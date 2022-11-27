@@ -70,11 +70,29 @@ namespace VetService.Helpers {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a AgregarHistoriaClinica.
+        /// </summary>
+        public static string AgregarHistoriaClinica {
+            get {
+                return ResourceManager.GetString("AgregarHistoriaClinica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a EspecialidadVeterinario.
         /// </summary>
         public static string EspecialidadVeterinario {
             get {
                 return ResourceManager.GetString("EspecialidadVeterinario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a InfoPaciente.
+        /// </summary>
+        public static string InfoPaciente {
+            get {
+                return ResourceManager.GetString("InfoPaciente", resourceCulture);
             }
         }
         
@@ -93,6 +111,15 @@ namespace VetService.Helpers {
         public static string RegistroPaciente {
             get {
                 return ResourceManager.GetString("RegistroPaciente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a VerAgendaVeterinario.
+        /// </summary>
+        public static string VerAgendaVeterinario {
+            get {
+                return ResourceManager.GetString("VerAgendaVeterinario", resourceCulture);
             }
         }
     }

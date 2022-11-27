@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Collections.ObjectModel;
 using VetService.Business.Interface;
 using VetService.Helpers;
 using VetService.Models;
@@ -13,6 +14,52 @@ namespace VetService.Repository
         {
             this.configuration = configuration;
         }
+
+        public void AgregarHistoriaClinica(int consultaMedicaId, string formula, string diagnostico, string descripcion, string motivo)
+        {
+            using (DataAccess dataAccess = new(configuration.GetConnectionString("Veterinaria")))
+            {
+                dataAccess.AddParameter("ConsultaMedicaId", consultaMedicaId);
+                dataAccess.AddParameter("Formula", formula);
+                dataAccess.AddParameter("Diagnostico", diagnostico);
+                dataAccess.AddParameter("Descripcion", descripcion);
+                dataAccess.AddParameter("Motivo", motivo);
+                
+                dataAccess.ExecuteScalar<int>(Procedures.AgregarHistoriaClinica);
+
+            }
+        }
+
+        public Paciente InfoPaciente(TipoDocumento tipoDocumentoId, string documento)
+        {
+            Paciente paciente = new();
+            using (DataAccess dataAccess = new(configuration.GetConnectionString("Veterinaria")))
+            {
+                dataAccess.AddParameter("TipoDocumento", tipoDocumentoId);
+                dataAccess.AddParameter("Documento", documento);
+
+                using (var dataReader = dataAccess.Execute(Procedures.InfoPaciente))
+                {
+                    while (dataReader.Read())
+                    {
+                        paciente.NombreMascota = dataReader.GetString(0);
+                        paciente.Edad = dataReader.GetInt32(1);
+                        paciente.Esterilizado = dataReader.GetBoolean(2);
+                        paciente.Hembra = dataReader.GetBoolean(3);
+                        paciente.Raza = dataReader.GetString(4);
+                        paciente.Especie = dataReader.GetString(5);
+                        paciente.Direccion = dataReader.GetString(6);
+                        paciente.Telefono = dataReader.GetString(7);
+                        paciente.TipoDocumentoId = (TipoDocumento)dataReader.GetInt32(8);
+                        paciente.Documento = dataReader.GetString(9);
+                        paciente.NombreDueño = dataReader.GetString(10);
+                    }
+                }
+
+            }
+            return paciente;
+        }
+
         public bool Registrar(Paciente paciente)
         {
             using (DataAccess dataAccess = new(configuration.GetConnectionString("Veterinaria")))

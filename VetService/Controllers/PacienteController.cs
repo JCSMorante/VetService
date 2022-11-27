@@ -22,5 +22,17 @@ namespace VetService.Controllers
         {
             return pacienteBussines.RegistrarPaciente(paciente);
         }
+
+        [HttpPut("AgregarHistoriaClinica")]
+        public bool AgregarHistoriaClinica(int ConsultaMedicaId, string Formula, string Diagnostico, string Descripcion, string Motivo)
+        {
+            return pacienteBussines.AgregarHistoriaClinica(ConsultaMedicaId, Formula, Diagnostico, Descripcion, Motivo);
+        }
+
+        [HttpGet("InfoPaciente")]
+        public Paciente InfoPaciente(TipoDocumento tipoDocumentoId, string documento)
+        {
+            return pacienteBussines.InfoPaciente(tipoDocumentoId, documento);
+        }
     }
 }

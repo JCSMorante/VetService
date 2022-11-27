@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using VetService.Business.Interface;
 using VetService.Models;
 using VetService.Repository.Interface;
@@ -23,6 +24,12 @@ namespace VetService.Business
             {
                 return false;
             }
+        }
+
+        public Collection<InfoAgenda> InfoAgenda(int VeterinarioId, DateTime Fecha)
+        {
+            Collection<InfoAgenda> infoVeterinario = veterinarioRepository.InfoAgenda(VeterinarioId, Fecha);
+            return infoVeterinario;
         }
 
         public InfoVeterinario InfoVeterinario(TipoDocumento tipoDocumentoId, string documento)

@@ -120,13 +120,22 @@
   <data name="AgendarCita" xml:space="preserve">
     <value>AgendarCita</value>
   </data>
+  <data name="AgregarHistoriaClinica" xml:space="preserve">
+    <value>AgregarHistoriaClinica</value>
+  </data>
   <data name="EspecialidadVeterinario" xml:space="preserve">
     <value>EspecialidadVeterinario</value>
+  </data>
+  <data name="InfoPaciente" xml:space="preserve">
+    <value>InfoPaciente</value>
   </data>
   <data name="InfoVeterinario" xml:space="preserve">
     <value>InfoVeterinario</value>
   </data>
   <data name="RegistroPaciente" xml:space="preserve">
     <value>RegistroPaciente</value>
+  </data>
+  <data name="VerAgendaVeterinario" xml:space="preserve">
+    <value>VerAgendaVeterinario</value>
   </data>
 </root>

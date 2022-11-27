@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.ObjectModel;
 using VetService.Business.Interface;
 using VetService.Models;
 
@@ -24,6 +25,12 @@ namespace VetService.Controllers
         public InfoVeterinario InfoVeterinario(TipoDocumento tipoDocumentoId, string documento)
         {
             return veterinarioBusiness.InfoVeterinario(tipoDocumentoId, documento);
+        }
+
+        [HttpGet("InfoAgenda")]
+        public Collection<InfoAgenda> InfoAgenda(int VeterinarioId, DateTime Fecha )
+        {
+            return veterinarioBusiness.InfoAgenda(VeterinarioId, Fecha);
         }
     }
 }

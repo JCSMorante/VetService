@@ -45,6 +45,31 @@ namespace VetService.Repository
             }
         }
 
+        public Collection<InfoAgenda> InfoAgenda(int veterinarioId, DateTime fecha)
+        {
+            Collection<InfoAgenda> agenda = new();
+            using (DataAccess dataAccess = new(configuration.GetConnectionString("Veterinaria")))
+            {
+                dataAccess.AddParameter("veterinarioId", veterinarioId);
+                dataAccess.AddParameter("fecha", fecha);
+
+                using (var dataReader = dataAccess.Execute(Procedures.VerAgendaVeterinario))
+                {
+                    while (dataReader.Read())
+                    {
+                        InfoAgenda evento = new InfoAgenda();
+                        evento.Veterinario = dataReader.GetString(0);
+                        evento.NombreDueño = dataReader.GetString(1);
+                        evento.Mascota = dataReader.GetString(2);
+                        evento.Fecha = dataReader.GetDateTime(3);
+                        agenda.Add(evento);
+                    }
+                }
+
+            }
+            return agenda;
+        }
+
         public InfoVeterinario InfoVeterinario(TipoDocumento tipoDocumentoId, string documento)
         {
             var infoVeterinario = new InfoVeterinario();
