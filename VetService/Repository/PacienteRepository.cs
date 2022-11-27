@@ -28,7 +28,7 @@ namespace VetService.Repository
                 dataAccess.AddParameter("TipoDocumento", paciente.TipoDocumentoId);
                 dataAccess.AddParameter("Documento", paciente.Documento);
                 dataAccess.AddParameter("NombreDueño", paciente.NombreDueño);
-                dataAccess.Execute(Procedures.RegistroPaciente);
+                dataAccess.ExecuteScalar<int>(Procedures.RegistroPaciente);
 
             }
             return true;

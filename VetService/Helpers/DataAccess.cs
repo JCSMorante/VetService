@@ -6,6 +6,8 @@ using Microsoft.Data.SqlClient;
 using Dapper;
 using static Dapper.SqlMapper;
 using Microsoft.Extensions.Configuration;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace VetService.Helpers
 {
@@ -34,16 +36,55 @@ namespace VetService.Helpers
 #pragma warning restore S2737 // "catch" clauses should do more than rethrow
         }
 
-        public int Execute(string StoredProcedure)
+        public T ExecuteScalar<T>(string StoredProcedure)
         {
 
             try
             {
                 OpenConnection();
-                int RowsAffected = 0;
-                RowsAffected = Connection.ExecuteScalar<int>(StoredProcedure, parameters, commandType: CommandType.StoredProcedure);
+                T result;
+                result = Connection.ExecuteScalar<T>(StoredProcedure, parameters, commandType: CommandType.StoredProcedure);
                 Dispose();
-                return RowsAffected;
+                return result;
+            }
+#pragma warning disable S2737 // "catch" clauses should do more than rethrow
+            catch (Exception)
+            {
+                throw;
+            }
+#pragma warning restore S2737 // "catch" clauses should do more than rethrow
+        }
+
+        public IDataReader Execute(string StoredProcedure)
+        {
+
+            try
+            {
+                OpenConnection();
+                IDataReader reader = Connection.ExecuteReader(StoredProcedure, parameters, commandType: CommandType.StoredProcedure);
+                return reader;
+            }
+#pragma warning disable S2737 // "catch" clauses should do more than rethrow
+            catch (Exception)
+            {
+                throw;
+            }
+#pragma warning restore S2737 // "catch" clauses should do more than rethrow
+        }
+
+        public Collection<T> GetList<T>(string pStoredProcedure)
+        {
+            try
+            {
+                OpenConnection();
+                if (parameters == null)
+                {
+                    parameters = new DynamicParameters();
+                }
+
+                var response = new ObservableCollection<T>(Connection.Query<T>(pStoredProcedure, parameters, commandType: CommandType.StoredProcedure, commandTimeout: 0).ToList());
+                Dispose();
+                return response;
             }
 #pragma warning disable S2737 // "catch" clauses should do more than rethrow
             catch (Exception)

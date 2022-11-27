@@ -19,5 +19,11 @@ namespace VetService.Controllers
         {
             return veterinarioBusiness.AgendarCita(VeterinarioId, PacienteId, Fecha, SedeId);
         }
+
+        [HttpGet("InfoVeterinario")]
+        public InfoVeterinario InfoVeterinario(TipoDocumento tipoDocumentoId, string documento)
+        {
+            return veterinarioBusiness.InfoVeterinario(tipoDocumentoId, documento);
+        }
     }
 }

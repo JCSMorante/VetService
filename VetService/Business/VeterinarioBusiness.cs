@@ -1,5 +1,6 @@
 ﻿using System;
 using VetService.Business.Interface;
+using VetService.Models;
 using VetService.Repository.Interface;
 
 namespace VetService.Business
@@ -23,5 +24,20 @@ namespace VetService.Business
                 return false;
             }
         }
+
+        public InfoVeterinario InfoVeterinario(TipoDocumento tipoDocumentoId, string documento)
+        {
+            try
+            {
+                InfoVeterinario infoVeterinario = veterinarioRepository.InfoVeterinario(tipoDocumentoId, documento);
+                infoVeterinario.Especialidades = veterinarioRepository.EspecialidadVeterinario(tipoDocumentoId, documento);
+                return infoVeterinario;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
+    
 }

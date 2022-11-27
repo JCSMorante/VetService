@@ -70,6 +70,24 @@ namespace VetService.Helpers {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a EspecialidadVeterinario.
+        /// </summary>
+        public static string EspecialidadVeterinario {
+            get {
+                return ResourceManager.GetString("EspecialidadVeterinario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a InfoVeterinario.
+        /// </summary>
+        public static string InfoVeterinario {
+            get {
+                return ResourceManager.GetString("InfoVeterinario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a RegistroPaciente.
         /// </summary>
         public static string RegistroPaciente {
