@@ -61,6 +61,15 @@ namespace VetService.Helpers {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a AgendarCita.
+        /// </summary>
+        public static string AgendarCita {
+            get {
+                return ResourceManager.GetString("AgendarCita", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a RegistroPaciente.
         /// </summary>
         public static string RegistroPaciente {

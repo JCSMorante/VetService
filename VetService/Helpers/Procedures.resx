@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgendarCita" xml:space="preserve">
+    <value>AgendarCita</value>
+  </data>
   <data name="RegistroPaciente" xml:space="preserve">
     <value>RegistroPaciente</value>
   </data>

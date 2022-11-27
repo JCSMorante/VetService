@@ -34,6 +34,8 @@ namespace VetService
             services.AddControllers();
             services.AddTransient<IPacienteBussines, PacienteBusiness>();
             services.AddTransient<IPacienteRepository, PacienteRepository>();
+            services.AddTransient<IVeterinarioBusiness, VeterinarioBusiness>();
+            services.AddTransient<IVeterinarioRepository, VeterinarioRepository>();
 
             services.AddSwaggerGen(c =>
             {

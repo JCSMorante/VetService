@@ -16,8 +16,8 @@ namespace VetService.Controllers
         {
             this.pacienteBussines = pacienteBussines;
         }
-    
-        [HttpPost]
+
+        [HttpPost("RegistrarPaciente")]
         public bool RegistrarPaciente([FromBody] Paciente paciente)
         {
             return pacienteBussines.RegistrarPaciente(paciente);
